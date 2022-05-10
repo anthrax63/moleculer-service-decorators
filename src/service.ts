@@ -17,7 +17,7 @@ import {
  * @param constructor The constructor to check
  */
 export function isServiceClass(constructor: any): constructor is ServiceConstructor {
-    return typeof constructor === "function" && Service.isPrototypeOf(constructor);
+    return typeof constructor === "function" && typeof constructor.prototype.parseServiceSchema === "function";
 }
 
 /**

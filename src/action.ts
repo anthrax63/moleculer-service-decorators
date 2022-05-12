@@ -1,4 +1,7 @@
-import { ActionSchema, Context } from "moleculer";
+import {
+    ActionSchema,
+    Context
+} from "moleculer";
 
 import {
     getMetadata,
@@ -7,12 +10,22 @@ import {
 } from "./utils/metadata";
 import { getParamNames } from "./utils/parameters";
 
-export interface ActionOptions {
-    name?: ActionSchema["name"];
-    cache?: ActionSchema["cache"];
-    metrics?: ActionSchema["metrics"];
-    params?: ActionSchema["params"];
-}
+
+
+export type ActionOptions = Pick<ActionSchema,
+    | 'name'
+    | 'rest'
+    | 'visibility'
+    | 'params'
+    | 'service'
+    | 'cache'
+    | 'tracing'
+    | 'bulkhead'
+    | 'circuitBreaker'
+    | 'retryPolicy'
+    | 'fallback'
+    | 'hooks'
+>;
 
 export function action(options?: ActionOptions): MethodDecorator {
     return <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => {

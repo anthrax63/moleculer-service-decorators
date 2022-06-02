@@ -1,5 +1,4 @@
 import {
-    Service,
     ServiceSchema,
 } from "moleculer";
 
@@ -53,7 +52,9 @@ export type ServiceOptions = Partial<Pick<ServiceSchema,
                                   Exclude<keyof ServiceSchema,
                                         ServiceOptionsToExclude>>>;
 
-export interface ServiceConstructor { new(...args: any[]): Service; }
+
+
+export type ServiceConstructor = new(...args: any[]) => any;
 
 export type ServiceDecorator = <T extends ServiceConstructor>(constructor: T) => T;
 
